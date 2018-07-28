@@ -1,1 +1,4 @@
-# machine learning methods: concepts and practice
+# machine learning methods: concepts and practices
+
+#### GBDT and XGBoost
+
