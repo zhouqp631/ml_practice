@@ -46,6 +46,7 @@ GBDT=GBRT=MART: Boosted Tree
 
 ### model
 
+
 $$\hat{y}_i = \sum_{t=1}^T f_t(x_i) \quad f_t \in \mathcal{F},$$
 
 where
@@ -74,6 +75,7 @@ $$
 1. GBDT
 
    1.1 最早的GBDT模型[^Fredeman] 没有正则化项，其目标函数为:
+   
    $$
    F^* = \mathrm{argmin} \sum_{i=1}^N l(y_i, F_{t-1}+f_t)
    $$
@@ -125,6 +127,7 @@ $$
 $$
 \mathrm{min}   \quad Obj_j^{(t)}
 $$
+
 ​	  得到：
 $$
 w_j^* = - \frac {G_j} {H_j + \lambda} \quad Obj = - \frac 1 2 \sum_{j=1}^T \frac {G_j^2} {H_j + \lambda} + \gamma T
