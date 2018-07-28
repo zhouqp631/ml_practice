@@ -1,6 +1,6 @@
 
 # GBDT and XGBoost
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
 ![tree](https://github.com/zhouqp631/ml_practice/tree/master/pictures/tree.jpg)
 
 
@@ -46,9 +46,7 @@ GBDT=GBRT=MART: Boosted Tree
 
 ### model
 
-$$
-\hat{y}_i = \sum_{t=1}^T f_t(x_i) \quad f_t \in \mathcal{F},
-$$
+$$\hat{y}_i = \sum_{t=1}^T f_t(x_i) \quad f_t \in \mathcal{F},$$
 
 where
 
