@@ -1,3 +1,4 @@
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
 # GBDT and XGBoost
 
 ![tree](https://github.com/zhouqp631/ml_practice/tree/master/pictures/tree.jpg)
