@@ -81,9 +81,7 @@ $$Obj = \sum_i^n \underbrace{l(y_i, \hat{y}_i)}_{training \_loss}+ \sum_{t=1}^T 
 
    - 其中预测值为：
 
-   $$
-   \hat{y}_i = \sum_{t=1}^T f_t(x_i) = F_{t-1}+f_t
-   $$
+   $$\hat{y}_i = \sum_{t=1}^T f_t(x_i) = F_{t-1}+f_t$$
 
    1.2 算法过程如下：
 
