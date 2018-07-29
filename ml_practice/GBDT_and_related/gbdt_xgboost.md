@@ -51,9 +51,7 @@ GBDT=GBRT=MART: Boosted Tree
 
 ### model
 
-$$
-\hat{y}_i = \sum_{t=1}^T f_t(x_i) \quad f_t \in \mathcal{F},
-$$
+$$\hat{y}_i = \sum_{t=1}^T f_t(x_i) \quad f_t \in \mathcal{F},$$
 
 where
 
@@ -68,9 +66,7 @@ where
 
 ---
 
-$$
-Obj = \sum_i^n \underbrace{l(y_i, \hat{y}_i)}_{training \_loss}+ \sum_{t=1}^T \underbrace{\Omega(f_t)}_{complexity\_of \_the\_tree}
-$$
+$$Obj = \sum_i^n \underbrace{l(y_i, \hat{y}_i)}_{training \_loss}+ \sum_{t=1}^T \underbrace{\Omega(f_t)}_{complexity\_of \_the\_tree}$$
 
 ### Gradient Boosting
 
@@ -81,15 +77,11 @@ $$
 1. GBDT
 
    1.1 最早的GBDT模型[^Fredeman] 没有正则化项，其目标函数为:
-   $$
-   F^* = \mathrm{argmin} \sum_{i=1}^N l(y_i, F_{t-1}+f_t)
-   $$
+   $$F^* = \mathrm{argmin} \sum_{i=1}^N l(y_i, F_{t-1}+f_t)$$
 
    - 其中预测值为：
 
-   $$
-   \hat{y}_i = \sum_{t=1}^T f_t(x_i) = F_{t-1}+f_t
-   $$
+   $$\hat{y}_i = \sum_{t=1}^T f_t(x_i) = F_{t-1}+f_t$$
 
    1.2 算法过程如下：
 
@@ -100,20 +92,14 @@ $$
 2. XGBoost
 
    2.1 目标函数为：
-   $$
-   Obj^{(t)} = \sum_i^n \underbrace{l(y_i, \hat{y}_i^{(t-1)}+f_t(x_i))}_{training \_loss}+  \underbrace{\Omega(f_t)}_{complexity\_of \_the\_tree}+\mathrm{constant}
-   $$
+   $$Obj^{(t)} = \sum_i^n \underbrace{l(y_i, \hat{y}_i^{(t-1)}+f_t(x_i))}_{training \_loss}+  \underbrace{\Omega(f_t)}_{complexity\_of \_the\_tree}+\mathrm{constant}$$
 
    - 其中预测值为：
 
-   $$
-   \hat{y}_i^{t} = \sum_{t=1}^T f_t(x_i) = \hat{y}_i^{t-1}+f_t(x_i)
-   $$
+   $$ \hat{y}_i^{t} = \sum_{t=1}^T f_t(x_i) = \hat{y}_i^{t-1}+f_t(x_i)$$
 
    - 正则化项为：
-     $$
-     \Omega(f_t)=\gamma T +\frac{1}{2}\sum_{j=1}^{T}w_j^2
-     $$
+     $$\Omega(f_t)=\gamma T +\frac{1}{2}\sum_{j=1}^{T}w_j^2$$
 
 
 
@@ -131,13 +117,9 @@ $$
 
      然后可以得到$f_t(x)=w_{q(x)}$的显示解
 
-$$
-\mathrm{min}   \quad Obj_j^{(t)}
-$$
+$$\mathrm{min}   \quad Obj_j^{(t)}$$
 ​	  得到：
-$$
-w_j^* = - \frac {G_j} {H_j + \lambda} \quad Obj = - \frac 1 2 \sum_{j=1}^T \frac {G_j^2} {H_j + \lambda} + \gamma T
-$$
+$$w_j^* = - \frac {G_j} {H_j + \lambda} \quad Obj = - \frac 1 2 \sum_{j=1}^T \frac {G_j^2} {H_j + \lambda} + \gamma T$$
 
 
 > Obj代表了当我们==指定一个树的结构的时候，我们在目标上面最多减少多少==。我们可以把它叫做结构分数(structure score)。你可以认为这个就是类似吉尼系数一样更加一般的对于树结构进行打分的函数。
@@ -145,11 +127,9 @@ $$
 - 构造树的方法
 
   不断地枚举（贪心算法）不同树的结构，==利用这个打分函数来寻找出一个最优结构的树，加入到我们的模型中==，再重复这样的操作 。分割后的得分值：
-  $$
-  Gain = score\_of\_not \_split - score\_of\_ split \\
+  $$Gain = score\_of\_not \_split - score\_of\_ split \\
            =-\frac{1}{2} \frac {(G_{L}+G_{R})^2} {H_L+H_R+ \lambda} + \gamma T' -\left[- \frac 1 2 \left( \frac {G_L^2} {H_L + \lambda}  +\frac {G_R^2} {H_R + \lambda}\right) + \gamma (T'+1)\right] \\
-           = \frac{1}{2}\left[\frac {G_L^2} {H_L + \lambda} +\frac {G_R^2} {H_R + \lambda}-\frac {(G_{L}+G_{R})^2} {H_L+H_R+ \lambda} \right]-\gamma
-  $$
+           = \frac{1}{2}\left[\frac {G_L^2} {H_L + \lambda} +\frac {G_R^2} {H_R + \lambda}-\frac {(G_{L}+G_{R})^2} {H_L+H_R+ \lambda} \right]-\gamma$$
 
   - 当Gain小于0，不需要分裂。Trade-off between simplicity and precictive
 
